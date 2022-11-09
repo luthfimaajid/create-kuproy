@@ -10,6 +10,7 @@
 const init = require('./utils/init');
 const cli = require('./utils/cli');
 const log = require('./utils/log');
+const {execSync} = require('child_process')
 const inquirer = require('inquirer');
 const ui = new inquirer.ui.BottomBar();
 
@@ -77,13 +78,74 @@ const prompt = async() => {
   return project;
 }
 
+const runCommand = command => {
+  try {
+    execSync(`${command}`, {stdio: 'inherit'});
+  } catch (e) {
+    console.error(`Failed to execute ${command}`, e);
+    return false
+  }
+
+  return true;
+}
+
 (async () => {
 	init({ clear });
 	input.includes(`help`) && cli.showHelp(0);
 
-  const project = await prompt();
+  let projectName;
 
-  console.log(project);
+  if (input.length < 1) {
+    const answer = await inquirer.prompt([{
+      type: "input",
+      name: "projectName",
+      message: "Project name",
+      default: "my-project",
+    }])
+
+    projectName = answer.projectName
+  } else {
+    projectName = input[0]
+  }
+
+  runCommand(`mkdir ${projectName}`)
+
+  const project = await prompt();
+  
+  if(project.projectType == 'Fullstack') {
+    switch (project.database) {
+      case "TypeORM":
+        runCommand(`cd ${projectName} && git clone --depth 1 https://github.com/luthfimaajid/create-kuproy -b be-typeorm backend`)
+        break;
+      default:
+        break;
+    }
+
+    switch (project.framework) {
+      case "Vue":
+        runCommand(`cd ${projectName} && git clone --depth 1 https://github.com/luthfimaajid/create-kuproy -b fe-vue frontend`)
+        break;
+      default:
+        break;
+    }
+
+  } else {
+    switch (project.database) {
+      case "TypeORM":
+        runCommand(`git clone --depth 1 https://github.com/luthfimaajid/create-kuproy -b be-typeorm ${projectName}`)
+        break;
+      default:
+        break;
+    }
+
+    switch (project.framework) {
+      case "Vue":
+        runCommand(`git clone --depth 1 https://github.com/luthfimaajid/create-kuproy -b fe-vue ${projectName}`)
+        break;
+      default:
+        break;
+    }
+  }
 
 	debug && log(flags);
 })();
