@@ -112,27 +112,33 @@ const runCommand = command => {
 
   const project = await prompt();
   
+  console.log(`\nCreating Project in /${projectName}.. \n`)
+
   if(project.projectType == 'Fullstack') {
     switch (project.database) {
       case "TypeORM":
-        runCommand(`cd ${projectName} && git clone --depth 1 https://github.com/luthfimaajid/create-kuproy -b be-typeorm backend`)
+        runCommand(`cd ${projectName} && git clone --quiet --depth 1 https://github.com/luthfimaajid/create-kuproy -b be-typeorm backend`)
         break;
       default:
         break;
     }
 
+    runCommand(`rm -rf ./${projectName}/backend/.git`)
+
     switch (project.framework) {
       case "Vue":
-        runCommand(`cd ${projectName} && git clone --depth 1 https://github.com/luthfimaajid/create-kuproy -b fe-vue frontend`)
+        runCommand(`cd ${projectName} && git clone --quiet --depth 1 https://github.com/luthfimaajid/create-kuproy -b fe-vue frontend`)
         break;
       default:
         break;
     }
+
+    runCommand(`rm -rf ./${projectName}/frontend/.git`)
 
   } else {
     switch (project.database) {
       case "TypeORM":
-        runCommand(`git clone --depth 1 https://github.com/luthfimaajid/create-kuproy -b be-typeorm ${projectName}`)
+        runCommand(`git clone --quiet --depth 1 https://github.com/luthfimaajid/create-kuproy -b be-typeorm ${projectName}`)
         break;
       default:
         break;
@@ -140,12 +146,15 @@ const runCommand = command => {
 
     switch (project.framework) {
       case "Vue":
-        runCommand(`git clone --depth 1 https://github.com/luthfimaajid/create-kuproy -b fe-vue ${projectName}`)
+        runCommand(`git clone --quiet --depth 1 https://github.com/luthfimaajid/create-kuproy -b fe-vue ${projectName}`)
         break;
       default:
         break;
     }
+
+    runCommand(`rm -rf ./${projectName}/.git`)
   }
+  console.log(`Done. Now run: \n\n cd ${projectName}\n npm install`)
 
 	debug && log(flags);
 })();
