@@ -39,7 +39,7 @@ const prompt = async() => {
         type: 'list',
         name: 'database',
         message: 'Database',
-        choices: ['TypeORM', 'Native Mysql', 'Native ...']
+        choices: ['MongoDB (Mongoose)', 'MySQL (TypeORM)']
       }])
 
       project = {
@@ -50,27 +50,19 @@ const prompt = async() => {
 
     if (project.projectType != 'Backend') {
       ui.log.write('\nConfigure frontend');
-      const answer = await inquirer.prompt([{
-        type: 'list',
-        name: 'framework',
-        message: 'Framework',
-        choices: ['Vue', 'React', 'Angular']
-      }])
 
-      const answer2 = await inquirer.prompt([{
+      const answer = await inquirer.prompt([{
         type: 'list',
         name: 'css',
         message: 'CSS framework',
-        choices: ['Bootstrap', 'Tailwind', 'Bulma']
+        choices: ['Bootstrap', 'Tailwind']
       }])
 
       project = {
         ...project,
         ...answer,
-        ...answer2
       }
     }
-
   } catch (err) {
     console.error(err);
   }
@@ -116,8 +108,8 @@ const runCommand = command => {
 
   if(project.projectType == 'Fullstack') {
     switch (project.database) {
-      case "TypeORM":
-        runCommand(`cd ${projectName} && git clone --quiet --depth 1 https://github.com/luthfimaajid/create-kuproy -b be-typeorm backend`)
+      case "MongoDB (Mongoose)":
+        runCommand(`cd ${projectName} && git clone --quiet --depth 1 https://github.com/luthfimaajid/create-kuproy -b be-mongodb backend`)
         break;
       default:
         break;
@@ -139,9 +131,10 @@ const runCommand = command => {
     console.log(`\n\n cd ${projectName}/backend\n npm install`)
   } else {
     switch (project.database) {
-      case "TypeORM":
-        runCommand(`git clone --quiet --depth 1 https://github.com/luthfimaajid/create-kuproy -b be-typeorm ${projectName}`)
+      case "MongoDB (Mongoose)":
+        runCommand(`git clone --quiet --depth 1 https://github.com/luthfimaajid/create-kuproy -b be-mongodb ${projectName}`)
         break;
+      case ""
       default:
         break;
     }
