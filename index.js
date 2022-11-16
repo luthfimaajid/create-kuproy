@@ -117,9 +117,9 @@ const runCommand = command => {
 
     runCommand(`rm -rf ./${projectName}/backend/.git`)
 
-    switch (project.framework) {
-      case "Vue":
-        runCommand(`cd ${projectName} && git clone --quiet --depth 1 https://github.com/luthfimaajid/create-kuproy -b fe-vue frontend`)
+    switch (project.css) {
+      case "Bootstrap":
+        runCommand(`cd ${projectName} && git clone --quiet --depth 1 https://github.com/luthfimaajid/create-kuproy -b vue-bootstrap frontend`)
         break;
       default:
         break;
@@ -134,14 +134,13 @@ const runCommand = command => {
       case "MongoDB (Mongoose)":
         runCommand(`git clone --quiet --depth 1 https://github.com/luthfimaajid/create-kuproy -b be-mongodb ${projectName}`)
         break;
-      case ""
       default:
         break;
     }
 
-    switch (project.framework) {
-      case "Vue":
-        runCommand(`git clone --quiet --depth 1 https://github.com/luthfimaajid/create-kuproy -b fe-vue ${projectName}`)
+    switch (project.css) {
+      case "Bootstrap":
+        runCommand(`git clone --quiet --depth 1 https://github.com/luthfimaajid/create-kuproy -b vue-bootstrap ${projectName}`)
         break;
       default:
         break;

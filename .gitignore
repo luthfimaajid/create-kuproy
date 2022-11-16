@@ -6,6 +6,8 @@ node_modules/
 
 # Packages #
 ############
+package-lock.json
+yarn.lock
 *.7z
 *.dmg
 *.gz
