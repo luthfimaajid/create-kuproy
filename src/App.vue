@@ -1,19 +1,9 @@
-<script setup>
-import User from "./components/User.vue";
-// import addUser from "./components/AddUser.vue";
-</script>
+<script setup></script>
 
 <template>
-	<div class="container">
-		<User />
-		<!-- <addUser /> -->
-	</div>
+	<router-link to="/"> Home </router-link>
+	<router-link to="/geoarea"> GeoArea </router-link>
+	<router-view />
 </template>
 
-<style scoped>
-.container {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
-</style>
+<style scoped></style>
