@@ -134,7 +134,9 @@ const runCommand = command => {
     }
 
     runCommand(`rm -rf ./${projectName}/frontend/.git`)
-
+    console.log(`Done. Now run:`);
+    console.log(`\n\n cd ${projectName}/frontend\n npm install`)
+    console.log(`\n\n cd ${projectName}/backend\n npm install`)
   } else {
     switch (project.database) {
       case "TypeORM":
@@ -153,8 +155,8 @@ const runCommand = command => {
     }
 
     runCommand(`rm -rf ./${projectName}/.git`)
+    console.log(`Done. Now run: \n\n cd ${projectName}\n npm install`)
   }
-  console.log(`Done. Now run: \n\n cd ${projectName}\n npm install`)
 
 	debug && log(flags);
 })();
