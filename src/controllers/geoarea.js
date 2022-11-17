@@ -1,14 +1,13 @@
 const Geoarea = require("../models/geoarea");
 
-exports.getByGeositeId = async(req, res) => {
-	try {
-        const schemaGetBySiteId = await Geoarea.find({geosite_id: req.query.siteid})
-        res.json(schemaGetBySiteId)
-	} catch(e){
-		console.error(e)
-		res.status(500).send('error')
-	}
-}
+// exports.getByGeositeId = async(req, res) => {
+// 	try {
+        
+// 	} catch(e){
+// 		console.error(e)
+// 		res.status(500).send('error')
+// 	}
+// }
 
 exports.get = async(req, res) => {
 	try {
@@ -22,8 +21,14 @@ exports.get = async(req, res) => {
 
 exports.getAll = async(req, res) => {
 	try {
-        const schemaGetAll = await Geoarea.find()
-        res.json(schemaGetAll)
+                let schemaGetAll
+                if(!req.query.siteid){
+                        schemaGetAll = await Geoarea.find()
+                        res.json(schemaGetAll)
+                } else{
+                        schemaGetAll = await Geoarea.find({geosite_id: req.query.siteid})
+                        res.json(schemaGetAll)
+                }
 	} catch(e){
 		console.error(e)
 		res.status(500).send('error')
