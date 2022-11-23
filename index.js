@@ -39,7 +39,7 @@ const prompt = async() => {
         type: 'list',
         name: 'database',
         message: 'Database',
-        choices: ['MongoDB (Mongoose)', 'MySQL (TypeORM)']
+        choices: ['MongoDB (Mongoose)', 'PostgreSQL (Prisma)']
       }])
 
       project = {
@@ -63,6 +63,19 @@ const prompt = async() => {
         ...answer,
       }
     }
+
+    ui.log.write('\nExample project');
+    const answerSample = await inquirer.prompt([{
+      type: 'list',
+      name: 'sample',
+      message: 'Do you want to generate example project?',
+      choices: ['yes', 'no']
+    }])
+    project = {
+      ...project,
+      ...answerSample,
+    }
+
   } catch (err) {
     console.error(err);
   }
@@ -109,7 +122,14 @@ const runCommand = command => {
   if(project.projectType == 'Fullstack') {
     switch (project.database) {
       case "MongoDB (Mongoose)":
-        runCommand(`cd ${projectName} && git clone --quiet --depth 1 https://github.com/luthfimaajid/create-kuproy -b be-mongodb backend`)
+        runCommand(`git clone --quiet --depth 1 https://github.com/luthfimaajid/create-kuproy -b mevn-stack ${projectName}`)
+        break;
+      case "PostgreSQL (Prisma)":
+        if(project.sample === 'yes') {
+          runCommand(`cd ${projectName} && git clone --quiet --depth 1 https://github.com/luthfimaajid/create-kuproy -b be-postgres backend`)
+        } else {
+          runCommand(`cd ${projectName} && git clone --quiet --depth 1 https://github.com/luthfimaajid/create-kuproy -b be-postgres-blank backend`)
+        }
         break;
       default:
         break;
@@ -119,7 +139,15 @@ const runCommand = command => {
 
     switch (project.css) {
       case "Bootstrap":
-        runCommand(`cd ${projectName} && git clone --quiet --depth 1 https://github.com/luthfimaajid/create-kuproy -b vue-bootstrap frontend`)
+        if(project.database === "MongoDB (Mongoose)") {
+          break;
+        }
+
+        if(project.sample === 'yes') {
+          runCommand(`cd ${projectName} && git clone --quiet --depth 1 https://github.com/luthfimaajid/create-kuproy -b vue-bootstrap frontend`)
+        } else {
+          runCommand(`cd ${projectName} && git clone --quiet --depth 1 https://github.com/luthfimaajid/create-kuproy -b vue-bootstrap-blank frontend`)
+        }
         break;
       default:
         break;
@@ -132,7 +160,18 @@ const runCommand = command => {
   } else {
     switch (project.database) {
       case "MongoDB (Mongoose)":
-        runCommand(`git clone --quiet --depth 1 https://github.com/luthfimaajid/create-kuproy -b be-mongodb ${projectName}`)
+        if(project.sample === 'yes') {
+          runCommand(`git clone --quiet --depth 1 https://github.com/luthfimaajid/create-kuproy -b be-mongodb ${projectName}`)
+        } else {
+          runCommand(`git clone --quiet --depth 1 https://github.com/luthfimaajid/create-kuproy -b be-mongodb-blank ${projectName}`)
+        }
+        break;
+      case "PostgreSQL (Prisma)":
+        if(project.sample === 'yes') {
+          runCommand(`git clone --quiet --depth 1 https://github.com/luthfimaajid/create-kuproy -b be-postgres ${projectName}`)
+        } else {
+          runCommand(`git clone --quiet --depth 1 https://github.com/luthfimaajid/create-kuproy -b be-postgres-blank ${projectName}`)
+        }
         break;
       default:
         break;
@@ -140,7 +179,11 @@ const runCommand = command => {
 
     switch (project.css) {
       case "Bootstrap":
-        runCommand(`git clone --quiet --depth 1 https://github.com/luthfimaajid/create-kuproy -b vue-bootstrap ${projectName}`)
+        if(project.sample === 'yes') {
+          runCommand(`git clone --quiet --depth 1 https://github.com/luthfimaajid/create-kuproy -b vue-bootstrap ${projectName}`)
+        } else {
+          runCommand(`git clone --quiet --depth 1 https://github.com/luthfimaajid/create-kuproy -b vue-bootstrap-blank ${projectName}`)
+        }
         break;
       default:
         break;
