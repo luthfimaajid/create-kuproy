@@ -1,6 +1,8 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Home from "../views/Home.vue";
-import GeoArea from "../views/GeoArea.vue";
+import Posts from "../views/Posts.vue";
+import CreatePost from "../views/CreatePost.vue";
+import UpdatePost from "../views/UpdatePost.vue";
 
 const routes = [
 	{
@@ -9,9 +11,19 @@ const routes = [
 		component: Home,
 	},
 	{
-		path: "/geoarea",
-		name: "GeoArea",
-		component: GeoArea,
+		path: "/posts",
+		name: "Posts",
+		component: Posts,
+	},
+	{
+		path: "/create-post",
+		name: "CreatePost",
+		component: CreatePost,
+	},
+	{
+		path: "/update-post/:id",
+		name: "UpdatePost",
+		component: UpdatePost,
 	},
 ];
 

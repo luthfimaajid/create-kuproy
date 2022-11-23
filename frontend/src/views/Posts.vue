@@ -4,7 +4,7 @@ import PostList from "../components/PostList.vue";
 
 <template>
 	<div>
-		<h1>Post List</h1>
+		<h1 class="text-center">Post List</h1>
 		<PostList />
 	</div>
 </template>
