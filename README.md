@@ -24,7 +24,7 @@ In case you choose to generate the implemented sample, in order to work with dat
 * [PostgreSQL](https://www.postgresql.org/download/)
 
 ### **How To Run**
-**1. Run Code**
+**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1. Run Code**
 
 To use the CLI, run this code:
 ```
@@ -34,14 +34,14 @@ You can specify the project name with anything you want. You can leave it blank 
 ```
 $ npx create-kuproy@latest
 ```
-**2. Specify Project Name**
+**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2. Specify Project Name**
 
 If you didn't specify the project name previously, you will be asked to type in the project name after you run the code. If you leave it on blank, the project will be generated with our default project name (my-project).
 
 ```
 ? Project name (my-project) [project-name]
 ```
-**3. Select Project Type**
+**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3. Select Project Type**
 
 After project name, you will be asked to choose project type. Fullstack type will generate both backend and frontend.
 ```
@@ -50,7 +50,7 @@ After project name, you will be asked to choose project type. Fullstack type wil
   Backend
   Frontend
 ```
-**4. Choose database**
+**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4. Choose database**
 
 Choose the database for the backend, both database using an ORM which simplifies the development(you don’t need to connect to the database manually). 
 > This step will only occur if you choose to generate fullstack or backend project.
@@ -60,7 +60,7 @@ Configure backend
 > MongoDB (Mongoose)
   PostgreSQL (Prisma)
 ```
-**5. Choose CSS framework**
+**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5. Choose CSS framework**
 
 Choose the CSS framework for the frontend.
 > This step will only occur if you choose to generate fullstack or frontend project.
@@ -70,7 +70,7 @@ Configure frontend
 > Bootstrap
   Tailwind
 ```
-**6. Example Project**
+**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6. Example Project**
 
 Last dialog is to decide wether you want to generate with the example project or just the skeleton project.
 > This step will only occur if your choice of project type, database, and CSS framework have the sample available.
@@ -80,13 +80,13 @@ Example project
 > yes
   no
 ```
-**7. Installing Dependencies**
+**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7. Installing Dependencies**
 
 After the project is generated, you'll need to install the dependencies. Run this code in each generated project.
 ```
 $ npm install 
 ```
-**8. Configure Environtment Variable**
+**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8. Configure Environtment Variable**
 
 After the dependencies are installed, you need to configure the environtment variable on each folder. In the backend there is file named `.env` which contain variable for the database url, change it with your url.
 ```
