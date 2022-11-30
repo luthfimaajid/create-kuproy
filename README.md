@@ -2,15 +2,15 @@
 ## Features
 ---
 There will be some options that you can choose based on your needs:
-* Fullstack
-    * Vue + MongoDB (Implemented Sample Available)
-    * Vue + PostgreSQL (Implemented Sample Available)
+* Fullstack (Bootstrap CSS Framework)
+    * Vue & MongoDB
+    * Vue * PostgreSQL
 * Frontend (Vue)
-    * Bootstrap (Implemented Sample Available)
-    * ~~Tailwind~~ (Coming Soon)
+    * Bootstrap
+    * Tailwind
 * Backend (Express)
-    * MongoDB (Implemented Sample Available)
-    * PostgreSQL (Implemented Sample Available)
+    * MongoDB
+    * PostgreSQL
 
 ## Getting Started
 ---
@@ -63,7 +63,7 @@ Configure backend
 **&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5. Choose CSS framework**
 
 Choose the CSS framework for the frontend.
-> This step will only occur if you choose to generate fullstack or frontend project.
+> This step will only occur if you choose to generate frontend project.
 ```
 Configure frontend
 ? CSS framework (Use arrow keys)
@@ -73,7 +73,6 @@ Configure frontend
 **&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6. Example Project**
 
 Last dialog is to decide wether you want to generate with the example project or just the skeleton project.
-> This step will only occur if your choice of project type, database, and CSS framework have the sample available.
 ```
 Example project 
 ? Do you want to generate example project? (Use arrow keys)
