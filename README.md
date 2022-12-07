@@ -4,7 +4,7 @@
 There will be some options that you can choose based on your needs:
 * Fullstack (Bootstrap CSS Framework)
     * Vue & MongoDB
-    * Vue * PostgreSQL
+    * Vue & PostgreSQL
 * Frontend (Vue)
     * Bootstrap
     * Tailwind
