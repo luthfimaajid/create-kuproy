@@ -2,7 +2,11 @@
 ## Features
 ---
 There will be some options that you can choose based on your needs:
-
+* Fullstack (Vue & Express)
+   * Bootstrap & MongoDB
+   * Bootstrap & PostgreSQL
+   * Tailwind & MongoDB
+   * Tailwind & PostgreSQL
 * Frontend (Vue)
     * Bootstrap
     * Tailwind
