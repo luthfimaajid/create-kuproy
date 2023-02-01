@@ -1,7 +1,7 @@
 {
 	"name": "create-kuproy",
 	"description": "Tools for generating fullstack starter project",
-	"version": "1.0.4",
+	"version": "1.0.5",
 	"license": "UNLICENSED",
 	"bin": {
 		"create-kuproy": "index.js"

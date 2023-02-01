@@ -12,19 +12,13 @@ const cli = require('./utils/cli');
 const log = require('./utils/log');
 const {execSync} = require('child_process')
 const inquirer = require('inquirer');
+const fs = require('fs');
+
 const ui = new inquirer.ui.BottomBar();
 
 const input = cli.input;
 const flags = cli.flags;
 const { clear, debug } = flags;
-
-
-let deleteCommand;
-if (process.platform === "win32") {
-  deleteCommand = "rmdir";
-} else {
-  deleteCommand = "rm -rf"
-}
 
 const prompt = async() => {
   let project;
@@ -143,8 +137,6 @@ const runCommand = command => {
         break;
     }
 
-    runCommand(`${deleteCommand} ./${projectName}/backend/.git`)
-
     switch (project.css) {
       case "Bootstrap":
         if(project.database === "MongoDB (Mongoose)") {
@@ -161,8 +153,25 @@ const runCommand = command => {
         break;
     }
 
-    runCommand(`${deleteCommand} ./${projectName}/frontend/.git`)
-    runCommand(`${deleteCommand} ./${projectName}/.git`)
+
+    fs.rm(`./${projectName}/backend/.git`, {recursive: true}, (err) => {
+      if(err) {
+        console.error(err);
+      }
+    })
+
+    fs.rm(`./${projectName}/frontend/.git`, {recursive: true}, (err) => {
+      if(err) {
+        console.error(err);
+      }
+    })
+
+    // fs.rm(`./${projectName}/.git`, {recursive: true}, (err) => {
+    //   if(err) {
+    //     console.error(err);
+    //   }
+    // })
+
     console.log(`Done. Now run:`);
     console.log(`\n\n cd ${projectName}/frontend\n npm install`)
     console.log(`\n\n cd ${projectName}/backend\n npm install`)
@@ -198,7 +207,12 @@ const runCommand = command => {
         break;
     }
 
-    runCommand(`${deleteCommand} ./${projectName}/.git`)
+    // runCommand(`${deleteCommand} ./${projectName}/.git`)
+    fs.rm(`./${projectName}/.git`, {recursive: true}, (err) => {
+      if(err) {
+        console.error(err);
+      }
+    })
     console.log(`Done. Now run: \n\n cd ${projectName}\n npm install`)
   }
 
