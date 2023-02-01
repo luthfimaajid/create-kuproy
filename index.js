@@ -18,6 +18,14 @@ const input = cli.input;
 const flags = cli.flags;
 const { clear, debug } = flags;
 
+
+let deleteCommand;
+if (process.platform === "win32") {
+  deleteCommand = "rmdir";
+} else {
+  deleteCommand = "rm -rf"
+}
+
 const prompt = async() => {
   let project;
 
@@ -135,7 +143,7 @@ const runCommand = command => {
         break;
     }
 
-    runCommand(`rm -rf ./${projectName}/backend/.git`)
+    runCommand(`${deleteCommand} ./${projectName}/backend/.git`)
 
     switch (project.css) {
       case "Bootstrap":
@@ -153,7 +161,8 @@ const runCommand = command => {
         break;
     }
 
-    runCommand(`rm -rf ./${projectName}/frontend/.git`)
+    runCommand(`${deleteCommand} ./${projectName}/frontend/.git`)
+    runCommand(`${deleteCommand} ./${projectName}/.git`)
     console.log(`Done. Now run:`);
     console.log(`\n\n cd ${projectName}/frontend\n npm install`)
     console.log(`\n\n cd ${projectName}/backend\n npm install`)
@@ -189,7 +198,7 @@ const runCommand = command => {
         break;
     }
 
-    runCommand(`rm -rf ./${projectName}/.git`)
+    runCommand(`${deleteCommand} ./${projectName}/.git`)
     console.log(`Done. Now run: \n\n cd ${projectName}\n npm install`)
   }
 
