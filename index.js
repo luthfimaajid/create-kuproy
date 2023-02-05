@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-
 /**
  * create-kuproy
  * Tools for generating fullstack starter project
@@ -20,6 +19,17 @@ const input = cli.input;
 const flags = cli.flags;
 const { clear, debug } = flags;
 
+const runCommand = command => {
+  try {
+    execSync(`${command}`, {stdio: 'inherit'});
+  } catch (e) {
+    console.error(`Failed to execute ${command}`, e);
+    return false
+  }
+
+  return true;
+}
+
 const prompt = async() => {
   let project;
 
@@ -37,32 +47,84 @@ const prompt = async() => {
 
     if (project.projectType != 'Frontend') {
       ui.log.write('\nConfigure backend');
-      const answer = await inquirer.prompt([{
-        type: 'list',
-        name: 'database',
-        message: 'Database',
-        choices: ['MongoDB (Mongoose)', 'PostgreSQL (Prisma)']
-      }])
+      const backend = await inquirer.prompt([
+        {
+          type: 'list',
+          name: 'backend',
+          message: 'Backend Framework',
+          choices: ['Express', 'NestJS (Express)']
+        },
+      ])
+
+      let database;
+      if (backend.backend === "Express") {
+        database = await inquirer.prompt([
+          {
+            type: 'list',
+            name: 'database',
+            message: 'Database Engine',
+            choices: ['MongoDB (Mongoose)', 'PostgreSQL (Prisma)', 'MySQL (Prisma)']
+          }
+        ])
+      }
+
+      if (backend.backend === "NestJS (Express)") {
+        database = await inquirer.prompt([
+          {
+            type: 'list',
+            name: 'database',
+            message: 'Database Engine',
+            choices: ['MongoDB (Mongoose)']
+          }
+        ])
+      }
 
       project = {
         ...project,
-        ...answer
+        ...backend,
+        ...database
       }
     }
 
     if (project.projectType != 'Backend') {
       ui.log.write('\nConfigure frontend');
 
-      const answer = await inquirer.prompt([{
-        type: 'list',
-        name: 'css',
-        message: 'CSS framework',
-        choices: ['Bootstrap', 'Tailwind']
-      }])
+      const frontend = await inquirer.prompt([
+        {
+          type: 'list',
+          name: 'frontend',
+          message: 'Frontend framework',
+          choices: ['Vue', 'React']
+        }
+      ])
+
+      let css;
+      if (frontend.frontend === "Vue") {
+        css = await inquirer.prompt([
+          {
+            type: 'list',
+            name: 'css',
+            message: 'CSS/UI framework',
+            choices: ['Bootstrap', 'Tailwind']
+          }
+        ])
+      }
+
+      if (frontend.frontend === "React") {
+        css = await inquirer.prompt([
+          {
+            type: 'list',
+            name: 'css',
+            message: 'CSS/UI framework',
+            choices: ['Tailwind']
+          }
+        ])
+      }
 
       project = {
         ...project,
-        ...answer,
+        ...frontend,
+        ...css
       }
     }
 
@@ -85,16 +147,6 @@ const prompt = async() => {
   return project;
 }
 
-const runCommand = command => {
-  try {
-    execSync(`${command}`, {stdio: 'inherit'});
-  } catch (e) {
-    console.error(`Failed to execute ${command}`, e);
-    return false
-  }
-
-  return true;
-}
 
 (async () => {
 	init({ clear });
@@ -121,38 +173,140 @@ const runCommand = command => {
   
   console.log(`\nCreating Project in /${projectName}.. \n`)
 
-  if(project.projectType == 'Fullstack') {
-    switch (project.database) {
-      case "MongoDB (Mongoose)":
-        runCommand(`git clone --quiet --depth 1 https://github.com/luthfimaajid/create-kuproy -b mevn-stack ${projectName}`)
-        break;
-      case "PostgreSQL (Prisma)":
-        if(project.sample === 'yes') {
-          runCommand(`cd ${projectName} && git clone --quiet --depth 1 https://github.com/luthfimaajid/create-kuproy -b be-postgres backend`)
-        } else {
-          runCommand(`cd ${projectName} && git clone --quiet --depth 1 https://github.com/luthfimaajid/create-kuproy -b be-postgres-blank backend`)
+  const isFullstack = project.projectType === 'Fullstack';
+
+  if(project.projectType !== 'Frontend') {
+    switch (project.backend) {
+      case "Express":
+        switch (project.database) {
+          case "MongoDB (Mongoose)":
+            if(project.sample === 'yes') {
+              runCommand(`${isFullstack ? "cd " + projectName + " && " : ""}git clone --quiet --depth 1 https://github.com/luthfimaajid/create-kuproy -b express-mongodb ${isFullstack ? "backend" : projectName}`)
+            } else {
+              runCommand(`${isFullstack ? "cd " + projectName + " && " : ""}git clone --quiet --depth 1 https://github.com/luthfimaajid/create-kuproy -b express-mongodb-blank ${isFullstack ? "backend" : projectName}`)
+            }
+            break;
+
+          case "PostgreSQL (Prisma)":
+            if(project.sample === 'yes') {
+              runCommand(`${isFullstack ? "cd " + projectName + " && " : ""}git clone --quiet --depth 1 https://github.com/luthfimaajid/create-kuproy -b express-postgres ${isFullstack ? "backend" : projectName}`)
+            } else {
+              runCommand(`${isFullstack ? "cd " + projectName + " && " : ""}git clone --quiet --depth 1 https://github.com/luthfimaajid/create-kuproy -b express-postgres-blank ${isFullstack ? "backend" : projectName}`)
+            }
+            break;
+
+          case "MySQL (Prisma)":
+            if(project.sample === 'yes') {
+              runCommand(`${isFullstack ? "cd " + projectName + " && " : ""}git clone --quiet --depth 1 https://github.com/luthfimaajid/create-kuproy -b express-mysql ${isFullstack ? "backend" : projectName}`)
+            } else {
+              runCommand(`${isFullstack ? "cd " + projectName + " && " : ""}git clone --quiet --depth 1 https://github.com/luthfimaajid/create-kuproy -b express-mysql-blank ${isFullstack ? "backend" : projectName}`)
+            }
+            break;
+
+          default:
+            break;
         }
         break;
+
+      case "NestJS (Express)":
+        switch (project.database) {
+          case "MongoDB (Mongoose)":
+            if(project.sample === 'yes') {
+              runCommand(`${isFullstack ? "cd " + projectName + " && " : ""}git clone --quiet --depth 1 https://github.com/luthfimaajid/create-kuproy -b nestjs-mongodb ${isFullstack ? "backend" : projectName}`)
+            } else {
+              runCommand(`${isFullstack ? "cd " + projectName + " && " : ""}git clone --quiet --depth 1 https://github.com/luthfimaajid/create-kuproy -b nestjs-mongodb-blank ${isFullstack ? "backend" : projectName}`)
+            }
+            break;
+
+          case "PostgreSQL (Prisma)":
+            if(project.sample === 'yes') {
+              runCommand(`${isFullstack ? "cd " + projectName + " && " : ""}git clone --quiet --depth 1 https://github.com/luthfimaajid/create-kuproy -b nestjs-postgres ${isFullstack ? "backend" : projectName}`)
+            } else {
+              runCommand(`${isFullstack ? "cd " + projectName + " && " : ""}git clone --quiet --depth 1 https://github.com/luthfimaajid/create-kuproy -b nestjs-postgres-blank ${isFullstack ? "backend" : projectName}`)
+            }
+            break;
+
+          case "MySQL (Prisma)":
+            if(project.sample === 'yes') {
+              runCommand(`${isFullstack ? "cd " + projectName + " && " : ""}git clone --quiet --depth 1 https://github.com/luthfimaajid/create-kuproy -b nestjs-mysql ${isFullstack ? "backend" : projectName}`)
+            } else {
+              runCommand(`${isFullstack ? "cd " + projectName + " && " : ""}git clone --quiet --depth 1 https://github.com/luthfimaajid/create-kuproy -b nestjs-mysql-blank ${isFullstack ? "backend" : projectName}`)
+            }
+            break;
+
+          default:
+            break;
+        }
+        break;
+
       default:
         break;
     }
+  }
 
-    switch (project.css) {
-      case "Bootstrap":
-        if(project.database === "MongoDB (Mongoose)") {
-          break;
-        }
+  if(project.projectType !== 'Backend') {
+    switch (project.frontend) {
+      case "Vue":
+        switch (project.css) {
+          case "Bootstrap":
+            if(project.sample === 'yes') {
+              runCommand(`${isFullstack ? "cd " + projectName + " && " : ""}git clone --quiet --depth 1 https://github.com/luthfimaajid/create-kuproy -b vue-bootstrap ${isFullstack ? "frontend" : projectName}`)
+            } else {
+              runCommand(`${isFullstack ? "cd " + projectName + " && " : ""}git clone --quiet --depth 1 https://github.com/luthfimaajid/create-kuproy -b vue-bootstrap-blank ${isFullstack ? "frontend" : projectName}`)
+            }
+            break;
 
-        if(project.sample === 'yes') {
-          runCommand(`cd ${projectName} && git clone --quiet --depth 1 https://github.com/luthfimaajid/create-kuproy -b vue-bootstrap frontend`)
-        } else {
-          runCommand(`cd ${projectName} && git clone --quiet --depth 1 https://github.com/luthfimaajid/create-kuproy -b vue-bootstrap-blank frontend`)
+          case "Tailwind":
+            if(project.sample === 'yes') {
+              runCommand(`${isFullstack ? "cd " + projectName + " && " : ""}git clone --quiet --depth 1 https://github.com/luthfimaajid/create-kuproy -b vue-tailwind ${isFullstack ? "frontend" : projectName}`)
+            } else {
+              runCommand(`${isFullstack ? "cd " + projectName + " && " : ""}git clone --quiet --depth 1 https://github.com/luthfimaajid/create-kuproy -b vue-tailwind-blank ${isFullstack ? "frontend" : projectName}`)
+            }
+            break;
+
+
+          default:
+            break;
         }
         break;
+
+      case "React":
+        switch (project.css) {
+          case "Bootstrap":
+            if(project.sample === 'yes') {
+              runCommand(`${isFullstack ? "cd " + projectName + " && " : ""}git clone --quiet --depth 1 https://github.com/luthfimaajid/create-kuproy -b react-bootstrap ${isFullstack ? "frontend" : projectName}`)
+            } else {
+              runCommand(`${isFullstack ? "cd " + projectName + " && " : ""}git clone --quiet --depth 1 https://github.com/luthfimaajid/create-kuproy -b react-bootstrap-blank ${isFullstack ? "frontend" : projectName}`)
+            }
+            break;
+
+          case "Tailwind":
+            if(project.sample === 'yes') {
+              runCommand(`${isFullstack ? "cd " + projectName + " && " : ""}git clone --quiet --depth 1 https://github.com/luthfimaajid/create-kuproy -b react-tailwind ${isFullstack ? "frontend" : projectName}`)
+            } else {
+              runCommand(`${isFullstack ? "cd " + projectName + " && " : ""}git clone --quiet --depth 1 https://github.com/luthfimaajid/create-kuproy -b react-tailwind-blank ${isFullstack ? "frontend" : projectName}`)
+            }
+            break;
+
+          default:
+            break;
+        }
+        break;
+
+
       default:
         break;
     }
+  }
 
+  console.log(`Installing dependency...`);
+
+  if (isFullstack) {
+    fs.rm(`./${projectName}/frontend/.git`, {recursive: true}, (err) => {
+      if(err) {
+        console.error(err);
+      }
+    })
 
     fs.rm(`./${projectName}/backend/.git`, {recursive: true}, (err) => {
       if(err) {
@@ -160,61 +314,20 @@ const runCommand = command => {
       }
     })
 
-    fs.rm(`./${projectName}/frontend/.git`, {recursive: true}, (err) => {
-      if(err) {
-        console.error(err);
-      }
-    })
-
-    // fs.rm(`./${projectName}/.git`, {recursive: true}, (err) => {
-    //   if(err) {
-    //     console.error(err);
-    //   }
-    // })
-
-    console.log(`Done. Now run:`);
-    console.log(`\n\n cd ${projectName}/frontend\n npm install`)
-    console.log(`\n\n cd ${projectName}/backend\n npm install`)
+    runCommand(`cd ${projectName}/frontend && npm install`);
+    runCommand(`cd ${projectName}/backend && npm install`);
   } else {
-    switch (project.database) {
-      case "MongoDB (Mongoose)":
-        if(project.sample === 'yes') {
-          runCommand(`git clone --quiet --depth 1 https://github.com/luthfimaajid/create-kuproy -b be-mongodb ${projectName}`)
-        } else {
-          runCommand(`git clone --quiet --depth 1 https://github.com/luthfimaajid/create-kuproy -b be-mongodb-blank ${projectName}`)
-        }
-        break;
-      case "PostgreSQL (Prisma)":
-        if(project.sample === 'yes') {
-          runCommand(`git clone --quiet --depth 1 https://github.com/luthfimaajid/create-kuproy -b be-postgres ${projectName}`)
-        } else {
-          runCommand(`git clone --quiet --depth 1 https://github.com/luthfimaajid/create-kuproy -b be-postgres-blank ${projectName}`)
-        }
-        break;
-      default:
-        break;
-    }
-
-    switch (project.css) {
-      case "Bootstrap":
-        if(project.sample === 'yes') {
-          runCommand(`git clone --quiet --depth 1 https://github.com/luthfimaajid/create-kuproy -b vue-bootstrap ${projectName}`)
-        } else {
-          runCommand(`git clone --quiet --depth 1 https://github.com/luthfimaajid/create-kuproy -b vue-bootstrap-blank ${projectName}`)
-        }
-        break;
-      default:
-        break;
-    }
-
-    // runCommand(`${deleteCommand} ./${projectName}/.git`)
     fs.rm(`./${projectName}/.git`, {recursive: true}, (err) => {
       if(err) {
         console.error(err);
       }
     })
-    console.log(`Done. Now run: \n\n cd ${projectName}\n npm install`)
+
+    runCommand(`cd ${projectName} && npm install`);
   }
+
+  console.log(`\n\nDone. Project initiated`);
+  console.log(`\ncd ${projectName}`);
 
 	debug && log(flags);
 })();
