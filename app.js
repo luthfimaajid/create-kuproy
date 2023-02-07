@@ -1,29 +1,21 @@
-const express = require("express");
-const morgan = require("morgan");
-const cors = require("cors");
+const fastify = require('fastify')({
+  logger: true
+})
+
+require('dotenv').config({path: `.env.${process.env.NODE_ENV}`})
 const mongoose = require("mongoose");
 
+mongoose.connect(process.env.MONGO_URI)
+	.catch(error => console.error(error));
 
-require("dotenv").config();
+fastify.register(require("./src/routes/note"), {prefix: "/api/note"});
 
-const siteRoute = require("./src/routes/geosite");
-const areaRoute = require("./src/routes/geoarea");
-const app = express();
-const PORT = process.env.PORT || 3000;
-const mongouri = process.env.MONGO_URI || "mongodb://localhost:27017/Geotara?ssl=false"
-mongoose.connect(mongouri);
-
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(cors());
-app.use(morgan("dev"));
-app.use("/site", siteRoute);
-app.use("/area", areaRoute);
-
-app.get("/", (req, res) => {
-	res.send("get");
-});
-
-app.listen(PORT, () => {
-	console.log("run on " + PORT);
-});
+const start = async () => {
+  try {
+    await fastify.listen({ port: process.env.PORT })
+  } catch (err) {
+    fastify.log.error(err)
+    process.exit(1)
+  }
+}
+start()
