@@ -1,14 +1,15 @@
-const Note = require("../models/note");
 
 exports.create = async(req, res) => {
-	const note = new Note({
+	const note = {
 		title: req.body.title,
 		location: req.body.title,
 		description: req.body.description
-	})
+	}
 
 	try{
-		const createdNote = await note.save()
+		const createdNote = await req.prisma.note.create({
+			data: note
+		})
 		res
 			.code(201)
 			.send(createdNote)
@@ -20,7 +21,7 @@ exports.create = async(req, res) => {
 
 exports.getAll = async(req, res) => {
 	try{
-		const notes = await Note.find()
+		const notes = await req.prisma.note.findMany()
 		res
 			.code(200)
 			.send(notes)
@@ -32,7 +33,11 @@ exports.getAll = async(req, res) => {
 
 exports.get = async(req, res) => {
 	try{
-		const note = await Note.findOne({_id: req.params.id})
+		const note = await req.prisma.note.findUnique({
+			where: {
+				id: Number(req.params.id)
+			}
+		}) 
 		res
 			.code(200)
 			.send(note);
@@ -44,11 +49,16 @@ exports.get = async(req, res) => {
 
 exports.update = async(req, res) => {
 	try{
-		const updatedNote = await Note.updateOne({_id: req.params.id}, {
-			title: req.body.title,
-			location: req.body.location,
-			description: req.body.description,
-			updated_at: Date.now()
+		const updatedNote = await req.prisma.note.update({
+			where: {
+				id: Number(req.params.id)
+			},
+			data: {
+				title: req.body.title,
+				location: req.body.location,
+				description: req.body.description,
+				updated_at: new Date(Date.now()).toISOString()
+			}
 		});
 		res
 			.code(200)
@@ -61,7 +71,11 @@ exports.update = async(req, res) => {
 
 exports.delete = async(req, res) => {
 	try{
-		const deletedNote = await Note.deleteOne({_id: req.params.id})
+		const deletedNote = await req.prisma.Note.delete({
+			where: {
+				id: Number(req.params.id)
+			}
+		})
 		res
 			.code(200)
 			.send(deletedNote);

@@ -3,12 +3,11 @@ const fastify = require('fastify')({
 })
 
 require('dotenv').config({path: `.env.${process.env.NODE_ENV}`})
-const mongoose = require("mongoose");
+const fastifyPrismaClient = require("fastify-prisma-client");
 
-mongoose.connect(process.env.MONGO_URI)
-	.catch(error => console.error(error));
-
+fastify.register(fastifyPrismaClient);
 fastify.register(require("./src/routes/note"), {prefix: "/api/note"});
+
 
 const start = async () => {
   try {

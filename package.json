@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "NODE_ENV=development nodemon app.js"
+    "dev": "NODE_ENV=development nodemon app.js",
+    "migrate:dev": "dotenv -e .env.development -- npx prisma migrate dev --name postgres-init"
   },
   "keywords": [],
   "author": "",
@@ -12,10 +13,15 @@
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
+    "dotenv-cli": "^7.0.0",
     "fastify": "^4.12.0",
-    "mongoose": "^6.7.2"
+    "fastify-prisma-client": "^5.0.0",
+    "prisma": "^4.10.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.20"
+  },
+  "prisma": {
+    "schema": "src/models/schema.prisma"
   }
 }
