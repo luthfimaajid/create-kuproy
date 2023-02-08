@@ -74,7 +74,7 @@ const prompt = async() => {
             type: 'list',
             name: 'database',
             message: 'Database Engine',
-            choices: ['MongoDB (Mongoose)']
+            choices: ['MongoDB (Mongoose)', 'PostgreSQL (Prisma)', 'MySQL (Prisma)']
           }
         ])
       }
