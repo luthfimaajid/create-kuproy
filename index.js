@@ -52,7 +52,7 @@ const prompt = async() => {
           type: 'list',
           name: 'backend',
           message: 'Backend Framework',
-          choices: ['Express', 'NestJS (Express)']
+          choices: ['Express', 'Fastify']
         },
       ])
 
@@ -78,6 +78,18 @@ const prompt = async() => {
           }
         ])
       }
+
+      if (backend.backend === "Fastify") {
+        database = await inquirer.prompt([
+          {
+            type: 'list',
+            name: 'database',
+            message: 'Database Engine',
+            choices: ['MongoDB (Mongoose)']
+          }
+        ])
+      }
+
 
       project = {
         ...project,
@@ -231,6 +243,37 @@ const prompt = async() => {
               runCommand(`${isFullstack ? "cd " + projectName + " && " : ""}git clone --quiet --depth 1 https://github.com/luthfimaajid/create-kuproy -b nestjs-mysql ${isFullstack ? "backend" : projectName}`)
             } else {
               runCommand(`${isFullstack ? "cd " + projectName + " && " : ""}git clone --quiet --depth 1 https://github.com/luthfimaajid/create-kuproy -b nestjs-mysql-blank ${isFullstack ? "backend" : projectName}`)
+            }
+            break;
+
+          default:
+            break;
+        }
+        break;
+
+      case "Fastify":
+        switch (project.database) {
+          case "MongoDB (Mongoose)":
+            if(project.sample === 'yes') {
+              runCommand(`${isFullstack ? "cd " + projectName + " && " : ""}git clone --quiet --depth 1 https://github.com/luthfimaajid/create-kuproy -b fastify-mongodb ${isFullstack ? "backend" : projectName}`)
+            } else {
+              runCommand(`${isFullstack ? "cd " + projectName + " && " : ""}git clone --quiet --depth 1 https://github.com/luthfimaajid/create-kuproy -b fastify-mongodb-blank ${isFullstack ? "backend" : projectName}`)
+            }
+            break;
+
+          case "PostgreSQL (Prisma)":
+            if(project.sample === 'yes') {
+              runCommand(`${isFullstack ? "cd " + projectName + " && " : ""}git clone --quiet --depth 1 https://github.com/luthfimaajid/create-kuproy -b fastify-postgres ${isFullstack ? "backend" : projectName}`)
+            } else {
+              runCommand(`${isFullstack ? "cd " + projectName + " && " : ""}git clone --quiet --depth 1 https://github.com/luthfimaajid/create-kuproy -b fastify-postgres-blank ${isFullstack ? "backend" : projectName}`)
+            }
+            break;
+
+          case "MySQL (Prisma)":
+            if(project.sample === 'yes') {
+              runCommand(`${isFullstack ? "cd " + projectName + " && " : ""}git clone --quiet --depth 1 https://github.com/luthfimaajid/create-kuproy -b fastify-mysql ${isFullstack ? "backend" : projectName}`)
+            } else {
+              runCommand(`${isFullstack ? "cd " + projectName + " && " : ""}git clone --quiet --depth 1 https://github.com/luthfimaajid/create-kuproy -b fastify-mysql-blank ${isFullstack ? "backend" : projectName}`)
             }
             break;
 
