@@ -1,7 +1,7 @@
 {
 	"name": "create-kuproy",
 	"description": "Tools for generating starter project",
-	"version": "1.1.1",
+	"version": "1.1.2",
 	"license": "UNLICENSED",
 	"bin": {
 		"create-kuproy": "index.js"
