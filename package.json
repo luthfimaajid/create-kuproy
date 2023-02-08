@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "NODE_ENV=development nodemon app.js",
-    "migrate:dev": "dotenv -e .env.development -- npx prisma migrate dev --name postgres-init"
+    "prisma:migrate:dev": "dotenv -e .env.development -- npx prisma migrate dev --name postgres-init"
   },
   "keywords": [],
   "author": "",
