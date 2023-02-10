@@ -2,7 +2,7 @@ const fastify = require('fastify')({
   logger: true
 })
 
-require('dotenv').config({path: `.env.${process.env.NODE_ENV}`})
+require('dotenv').config()
 const fastifyPrismaClient = require("fastify-prisma-client");
 
 fastify.register(fastifyPrismaClient);
