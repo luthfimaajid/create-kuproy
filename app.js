@@ -1,26 +1,17 @@
 const express = require("express");
-const morgan = require("morgan");
 const cors = require("cors");
-
 
 require("dotenv").config();
 
-const siteRoute = require("./src/routes/geosite");
-const areaRoute = require("./src/routes/geoarea");
+const noteRoute = require("./src/routes/note");
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT;
 
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
 app.use(cors());
-app.use(morgan("dev"));
-app.use("/site", siteRoute);
-app.use("/area", areaRoute);
-
-app.get("/", (req, res) => {
-	res.send("get");
-});
+app.use(express.urlencoded({ extended: true }));
+app.use("/api/note", noteRoute);
 
 app.listen(PORT, () => {
-	console.log("run on " + PORT);
+	console.log("server run on " + PORT);
 });

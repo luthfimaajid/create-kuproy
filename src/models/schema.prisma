@@ -1,36 +1,17 @@
 datasource db {
   url      = env("DATABASE_URL")
-  provider = "postgresql"
+  provider = "mysql"
 }
 
 generator client {
   provider = "prisma-client-js"
 }
 
-model Geosite {
-  id        Int      @id @default(autoincrement())
-	site_category String?
-	name String?
-	description String?
-	location String?
-  created_at DateTime? @default(now())
-	updated_at DateTime?
-	geoarea Geoarea[]
-}
-
-model Geoarea {
+model Note {
 	id Int @id @default(autoincrement())
-	geosite Geosite @relation(fields: [geosite_id], references: [id])
-	geosite_id Int
-	area_category String?
-	name String?
-	banner_img String?
-	thumbnail_img String?
-	description String?
-	ticket_price Int?
-	operational_time String?
+	title String?
 	location String?
-	coordinate String?
-  created_at DateTime? @default(now())
+	description String?
+	created_at DateTime? @default(now())
 	updated_at DateTime?
 }
