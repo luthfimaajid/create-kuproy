@@ -2,7 +2,7 @@ const fastify = require('fastify')({
   logger: true
 })
 
-require('dotenv').config({path: `.env.${process.env.NODE_ENV}`})
+require('dotenv').config();
 const mongoose = require("mongoose");
 
 mongoose.connect(process.env.MONGO_URI)
