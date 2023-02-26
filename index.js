@@ -140,22 +140,22 @@ const prompt = async() => {
       }
     }
 
-    // ui.log.write('\nExample project');
-    // const answerSample = await inquirer.prompt([{
-    //   type: 'list',
-    //   name: 'sample',
-    //   message: 'Do you want to generate example project?',
-    //   choices: ['yes', 'no']
-    // }])
-    // project = {
-    //   ...project,
-    //   ...answerSample,
-    // }
-
+    ui.log.write('\nExample project');
+    const answerSample = await inquirer.prompt([{
+      type: 'list',
+      name: 'sample',
+      message: 'Do you want to generate example project?',
+      choices: ['yes', 'no']
+    }])
     project = {
       ...project,
-      sample: "yes"
+      ...answerSample,
     }
+
+    // project = {
+    //   ...project,
+    //   sample: "yes"
+    // }
 
 
   } catch (err) {
