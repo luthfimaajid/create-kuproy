@@ -194,6 +194,8 @@ const prompt = async() => {
 
   const isFullstack = project.projectType === 'Fullstack';
 
+  // const isExample = project.answerSample === 'yes';
+
   if(project.projectType !== 'Frontend') {
     switch (project.backend) {
       case "Express":
@@ -349,8 +351,6 @@ const prompt = async() => {
     }
   }
 
-  console.log(`Installing dependency...`);
-
   if (isFullstack) {
     fs.rm(`./${projectName}/frontend/.git`, {recursive: true}, (err) => {
       if(err) {
@@ -363,9 +363,11 @@ const prompt = async() => {
         console.error(err);
       }
     })
-
-    runCommand(`cd ${projectName}/frontend && npm install`);
-    runCommand(`cd ${projectName}/backend && npm install`);
+    if (project.sample === 'yes'){
+      console.log(`Installing dependency...`);
+      runCommand(`cd ${projectName}/frontend && npm install`);
+      runCommand(`cd ${projectName}/backend && npm install`);
+    }
   } else {
     fs.rm(`./${projectName}/.git`, {recursive: true}, (err) => {
       if(err) {
@@ -373,7 +375,10 @@ const prompt = async() => {
       }
     })
 
-    runCommand(`cd ${projectName} && npm install`);
+    if (project.sample === 'yes'){
+      console.log(`Installing dependency...`);
+      runCommand(`cd ${projectName} && npm install`);
+    }
   }
 
   console.log(`\n\nDone. Project initiated`);
