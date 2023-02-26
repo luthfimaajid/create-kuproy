@@ -12,6 +12,7 @@ const log = require('./utils/log');
 const {execSync} = require('child_process')
 const inquirer = require('inquirer');
 const fs = require('fs');
+const process = require('process');
 
 const ui = new inquirer.ui.BottomBar();
 
@@ -376,6 +377,7 @@ const prompt = async() => {
   }
 
   console.log(`\n\nDone. Project initiated`);
+
   console.log(`\ncd ${projectName}`);
 
 	debug && log(flags);
