@@ -72,3 +72,4 @@ assets/img/.DS_Store
 # .vscode
 yarn.lock
 package-lock.json
+*-lock.json
