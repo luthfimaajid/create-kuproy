@@ -2,17 +2,19 @@
 ## Features
 ---
 There will be some options that you can choose based on your needs:
-* Fullstack (Vue & Express)
-   * Bootstrap & MongoDB
-   * Bootstrap & PostgreSQL
-   * Tailwind & MongoDB
-   * Tailwind & PostgreSQL
-* Frontend (Vue)
+* Backend Framework
+    * Express
+    * Fastify
+* Database
+    * Mongodb (Mongoose)
+    * MySQL (prisma)
+    * PostgreSQL (prisma)
+* Frontend Framework
+    * Vue
+* CSS/UI Framework 
     * Bootstrap
-    * Tailwind
-* Backend (Express)
-    * MongoDB
-    * PostgreSQL
+
+You can choose to generate backend or frontend only, or you can generate both if you want a fullstack application.
 
 ## Getting Started
 ---
@@ -91,23 +93,31 @@ $ npm install
 
 After the dependencies are installed, you need to configure the environtment variable on each folder. In the backend there is file named `.env` which contain variable for the database url, change it with your url.
 ```
-DATABASE_URL=postgresql://admin:admin@localhost:5432/geotara
+DATABASE_URL=postgresql://admin:admin@localhost:5432/kuproy
 ```
+### Postgres & MySQL
+If you are using postgres and mysql since we are using prisma as an ORM, please make sure to define schema on `schema.prisma` file inside `src/models` folder.\
+After defining the model, run this 2 script before starting the application.
+```
+npm run prisma:migrate:dev
+npm run primsa:generate
+```
+Both code act as a migration script and generating model abstraction.
 ## Folder Structure
 ---
 *Backend*:
-* `src/config` - Configuration file
-* `src/controllers` - Business process logic
-* `src/middlewares` - Middlewares, such as authentication
-* `src/models` — Entity model, migration script of the database
-* `src/routes` — Routes endpoint
+* `src/config` - Store configuration files that are used to set up the application's behavior such as database connection.
+* `src/controllers` - Contain business logic of the app including process user input, communication with model, etc.
+* `src/middlewares` - Contain middlewares function for preprocessing request before getting to the controller, such as authentication, data parsing, etc.
+* `src/models` — Contain data model of the application and provides an abstraction layer for working with the data.
+* `src/routes` — Store the application's route handlers. Route handlers are functions that are called when an HTTP request is made to a specific endpoint, or route, in the application.
 * `src/utils` — Common function (used in many places)
 * `test/e2e` — e2e test file
 * `test/unit` — Unit test file
 
 *Frontend*:
-* `public` — Contain static file
-* `src/assets` — Assets such as images, icon, etc
-* `src/components` — Vue reusable component (button, form, etc)
-* `src/router` — Page routes handling
-* `src/views` — Page element such as home, about, etc
+* `public` — Store static assets that are publicly accessible by the application's users. Static assets are files that are used by the application's pages.
+* `src/assets` — Store static assets like images, fonts, and icons that are used by the application's pages and components.
+* `src/components` — Store reusable UI components that can be used throughout the application. UI components are individual pieces of the user interface that can be combined together to create more complex UI elements.
+* `src/router` — Store files and modules that handle the routing and navigation within the application. This can include defining the various routes that the application supports and mapping them to the appropriate components or views.
+* `src/views` — Store files that represent the different views or pages of the application. Views are the individual pages or screens that the user interacts with in the application.
