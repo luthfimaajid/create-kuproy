@@ -19,7 +19,7 @@ const UpdateForm = () => {
     }, [id]);
 
     const getPostById = async () => {
-      const response = await axios.get(`http://localhost:5000/api/post/${id}`)
+      const response = await axios.get(`http://localhost:8080/api/note/${id}`)
       setTitle(response.data.title);
       setLocation(response.data.location);
       setDescription(response.data.description);
@@ -32,7 +32,7 @@ const UpdateForm = () => {
 
       const data = {title, location, description}
       try {
-        const response = await axios.patch(`http://localhost:5000/api/post/${id}`, data);
+        const response = await axios.patch(`http://localhost:8080/api/note/${id}`, data);
         console.log('Note updated successfully!');
         navigate("/posts");
       } catch (error) {

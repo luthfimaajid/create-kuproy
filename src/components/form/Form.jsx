@@ -15,7 +15,7 @@ const Form = () => {
     
         const data = { title, location, description };
         try {
-          const response = await axios.post('http://localhost:5000/api/post/', data);
+          const response = await axios.post('http://localhost:8080/api/note/', data);
           console.log('Note created successfully!');
           navigate('/posts');
         } catch (error) {
