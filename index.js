@@ -107,7 +107,7 @@ const prompt = async() => {
           type: 'list',
           name: 'frontend',
           message: 'Frontend framework',
-          choices: ['Vue']
+          choices: ['Vue', 'React']
         }
       ])
 
