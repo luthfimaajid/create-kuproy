@@ -1,6 +1,7 @@
 const fastify = require('fastify')({
   logger: true
 })
+const cors = require('@fastify/cors');
 
 require('dotenv').config({path: `.env.${process.env.NODE_ENV}`})
 const fastifyPrismaClient = require("fastify-prisma-client");
@@ -8,6 +9,10 @@ const fastifyPrismaClient = require("fastify-prisma-client");
 fastify.register(fastifyPrismaClient);
 fastify.register(require("./src/routes/note"), {prefix: "/api/note"});
 
+fastify.register(cors, {
+  origin: '*',
+  methods: ["POST", "GET", "PUT", "PATCH", "DELETE"],
+})
 
 const start = async () => {
   try {
