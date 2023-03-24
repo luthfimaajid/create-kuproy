@@ -118,7 +118,7 @@ const prompt = async() => {
             type: 'list',
             name: 'css',
             message: 'CSS/UI framework',
-            choices: ['Bootstrap']
+            choices: ['Bootstrap', 'Tailwind']
           }
         ])
       }
