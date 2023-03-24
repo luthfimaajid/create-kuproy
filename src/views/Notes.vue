@@ -1,10 +1,10 @@
 <script setup>
-import note from "../components/note.vue";
+import Note from "../components/Note.vue";
+import Topbar from "../components/Topbar.vue";
 </script>
 
 <template>
 	<div>
-		<h1>Notes</h1>
-		<note />
+		<Note />
 	</div>
 </template>

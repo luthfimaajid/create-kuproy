@@ -1,19 +1,40 @@
-<script setup></script>
+<script setup>
+import Topbar from "./components/Topbar.vue";
+
+</script>
+
 
 <template>
-	<nav class="navbar navbar-expand-lg bg-light">
-		<div class="container-fluid">
-			<a class="navbar-brand" href="#">Kuproy</a>
-			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-					<li class="nav-item">
-						<router-link class="nav-link active" to="/"> Home </router-link>
+	<topbar/>
+	<nav class="flex items-center justify-between">
+		<div class="flex items-center">
+    	<img src="/assets/logo_kuproy.svg" alt="Logo" class="h-12  mr-10" />
+				<ul class="flex">
+					<li class="bg-custom-gray-3 text-custom-gray-2 hover:bg-custom-orange-1">
+						<router-link class="font-quicksand font-medium  hover:text-white pr-4 pl-4 py-0.5 px-0.5 flex items-center " to="/">
+							<img src="/assets/home_icon_active.svg"
+							alt="home-icon"
+							class="pr-3"/>
+							Home 
+						</router-link>
 					</li>
-					<li class="nav-item">
-						<router-link class="nav-link active" :to="{name : 'Notes'}">Notes</router-link>
+					<li class="bg-custom-gray-3 text-custom-gray-2 hover:bg-custom-orange-1">
+						<router-link class="font-quicksand font-medium  hover:text-white pr-4 pl-4 py-0.5 px-0.5 flex items-center " 
+						:to="{name: 'Notes'}">
+							<img src="/assets/posts_icon_active.svg"
+							alt="home-icon"
+							class="pr-3"/>
+							Notes 
+						</router-link>
 					</li>
-					<li class="nav-item">
-						<router-link class="nav-link active" :to="{name : 'create-note'}">Create</router-link>
+					<li class="bg-custom-gray-3 text-custom-gray-2 hover:bg-custom-orange-1">
+						<router-link class="font-quicksand font-medium  hover:text-white pr-4 pl-4 py-0.5 px-0.5 flex items-center " 
+						:to="{name: 'create-note'}">
+							<img src="/assets/create_icon_active.svg"
+							alt="home-icon"
+							class="pr-3"/>
+							Create 
+						</router-link>
 					</li>
 				</ul>
 				<!-- <form class="d-flex" role="search">
@@ -25,7 +46,6 @@
 					/>
 					<button class="btn btn-outline-success" type="submit">Search</button>
 				</form> -->
-			</div>
 		</div>
 	</nav>
 	<router-view />
