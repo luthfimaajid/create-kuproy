@@ -1,10 +1,9 @@
 <script setup>
-import note from "../components/note.vue";
+import Note from "../components/Note.vue";
 </script>
 
 <template>
 	<div>
-		<h1>Notes</h1>
-		<note />
+		<Note />
 	</div>
 </template>
