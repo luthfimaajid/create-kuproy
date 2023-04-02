@@ -46,7 +46,7 @@ If you didn't specify the project name previously, you will be asked to type in 
 ```
 ? Project name (my-project) [project-name]
 ```
-The name of the project should only contain alphabet, number, dash (-), and underscore (_),
+The name of the project should only contain alphabet, number, dash (-), and underscore (_), for example: My-project_123
 
 **&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3. Select Project Type**
 
