@@ -38,10 +38,6 @@ In case you choose to generate the implemented sample, in order to work with dat
 
 To use the CLI, run this code on your terminal:
 ```
-$ npx create-kuproy@latest [project-name]
-```
-You can specify the project name with anything you want. You can leave it blank like this:
-```
 $ npx create-kuproy@latest
 ```
 **&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2. Specify Project Name**
@@ -51,6 +47,8 @@ If you didn't specify the project name previously, you will be asked to type in 
 ```
 ? Project name (my-project) [project-name]
 ```
+The name of the project should only contain alphabet, number, dash (-), and underscore (_),
+
 **&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3. Select Project Type**
 
 After project name, you will be asked to choose project type. Fullstack type will generate both backend and frontend.
