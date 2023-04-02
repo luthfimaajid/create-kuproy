@@ -13,9 +13,11 @@ There will be some options that you can choose based on your needs:
     * MySQL (prisma)
     * PostgreSQL (prisma)
 * Frontend Framework
-    * Vue
+    * React
+    * Vue 
 * CSS/UI Framework 
     * Bootstrap
+    * Tailwind
 
 You can choose to generate backend or frontend only, or you can generate both if you want a fullstack application.
 
@@ -29,11 +31,12 @@ Also you must to have node.js and npm (node.js package manager). You can get the
 In case you choose to generate the implemented sample, in order to work with database, you should have installed MongoDB or PostgreSQL, depends on the database you choose. Instructions on installation can be found here: 
 * [MongoDB](https://docs.mongodb.com/manual/installation/)
 * [PostgreSQL](https://www.postgresql.org/download/)
+* [MySQL](https://www.mysql.com/downloads/)
 
 ### **How To Run**
 **&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1. Run Code**
 
-To use the CLI, run this code:
+To use the CLI, run this code on your terminal:
 ```
 $ npx create-kuproy@latest [project-name]
 ```
@@ -57,42 +60,64 @@ After project name, you will be asked to choose project type. Fullstack type wil
   Backend
   Frontend
 ```
-**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4. Choose database**
+**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4. Choose Backend Framework**
+
+Choose the backend framework for your projec. 
+> This step will only occur if you choose to generate fullstack or backend project.
+```
+Configure backend
+? Backend Framework (use arrow keys)
+> Express
+  Fastfy 
+```
+
+**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5. Choose database**
 
 Choose the database for the backend, both database using an ORM which simplifies the development(you don’t need to connect to the database manually). 
 > This step will only occur if you choose to generate fullstack or backend project.
 ```
-Configure backend
-? Database (use arrow keys)
+? Database Engine (use arrow keys)
 > MongoDB (Mongoose)
   PostgreSQL (Prisma)
+  MySQL (Prisma)
 ```
-**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5. Choose CSS framework**
+**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6. Choose frontend framework**
 
-Choose the CSS framework for the frontend.
-> This step will only occur if you choose to generate frontend project.
+Choose the frontend framework.
+> This step will only occur if you choose to generate frontend or fullstack project.
 ```
 Configure frontend
-? CSS framework (Use arrow keys)
+? Frontend framework (Use arrow keys)
+> React
+  Vue
+```
+
+**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7. Choose CSS framework**
+
+Choose the CSS framework for the frontend.
+> This step will only occur if you choose to generate frontend  or fullstack project.
+```
+? CSS/UI framework (Use arrow keys)
 > Bootstrap
   Tailwind
 ```
 **&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6. Example Project**
 
 Last dialog is to decide wether you want to generate with the example project or just the skeleton project.
+> This step will only occur if you choose to generate fullstack project.
 ```
 Example project 
 ? Do you want to generate example project? (Use arrow keys)
 > yes
   no
 ```
-**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7. Installing Dependencies**
+Go to the project folder by typing:
+```
+cd "project-name"
+```
+Replace project-name with the project name you specified.
 
-After the project is generated, you'll need to install the dependencies. Run this code in each generated project.
-```
-$ npm install 
-```
-**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8. Configure Environtment Variable**
+**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7. Configure Environtment Variable**
 
 After the dependencies are installed, you need to configure the environtment variable on each folder. In the backend there is file named `.env` which contain variable for the database url, change it with your url.
 ```
@@ -106,6 +131,12 @@ npm run prisma:migrate:dev
 npm run primsa:generate
 ```
 Both code act as a migration script and generating model abstraction.
+
+### Run the Project
+After the environtment is configured, run the project in dev mode by typing:
+```
+npm run dev
+```
 ## Folder Structure
 ---
 *Backend*:
