@@ -101,7 +101,7 @@ Choose the CSS framework for the frontend.
 > Bootstrap
   Tailwind
 ```
-**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6. Example Project**
+**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8. Example Project**
 
 Last dialog is to decide wether you want to generate with the example project or just the skeleton project.
 > This step will only occur if you choose to generate fullstack project.
@@ -113,17 +113,27 @@ Example project
 ```
 Go to the project folder by typing:
 ```
-cd "project-name"
+cd [project-name]
 ```
 Replace project-name with the project name you specified.
 
-**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7. Configure Environtment Variable**
+## Runnng Example Project
+### Configure backend
+**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1. Change directory to backend**
+
+Make sure you follow the above step to change the directory to root project. Then go to the backend folder by typng:
+```
+cd backend
+```
+
+**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2. Configure Environtment Variable**
 
 After the dependencies are installed, you need to configure the environtment variable on each folder. In the backend there is file named `.env` which contain variable for the database url, change it with your url.
 ```
 DATABASE_URL=postgresql://admin:admin@localhost:5432/kuproy
 ```
-### Postgres & MySQL
+**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3. Postgres & MySQL**
+
 If you are using postgres and mysql since we are using prisma as an ORM, please make sure to define schema on `schema.prisma` file inside `src/models` folder.\
 You can refer to [this link](https://www.prisma.io/docs/reference/api-reference/prisma-schema-reference) for schema documentation.\
 After defining the model, run this 2 script before starting the application.
@@ -133,11 +143,27 @@ npm run primsa:generate
 ```
 Both code act as a migration script and generating model abstraction.
 
-### Run the Project
+**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4. Run the project**
+
 After the environtment is configured, run the project in dev mode by typing:
 ```
 npm run dev
 ```
+
+### Configure Frontend
+**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1. Change directory to frontend**
+
+Open new terminal and go the root project directory then go to the frontend folder by typing:
+```
+cd frontend
+```
+**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2. Run the project**
+
+```
+npm run dev 
+```
+
+
 ## Folder Structure
 ---
 *Backend*:
