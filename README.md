@@ -9,8 +9,8 @@ There will be some options that you can choose based on your needs:
     * Fastify
 * Database
     * Mongodb (Mongoose)
-    * MySQL (prisma)
-    * PostgreSQL (prisma)
+    * MySQL (Prisma)
+    * PostgreSQL (Prisma)
 * Frontend Framework
     * React
     * Vue 
@@ -30,10 +30,6 @@ You need to have a git client to clone the repository. You can get it from http:
 
 Also you must to have node.js and npm (node.js package manager). You can get them from http://nodejs.org/.
 
-In case you choose to generate the implemented sample, in order to work with database, you should have installed MongoDB or PostgreSQL, depends on the database you choose. Instructions on installation can be found here: 
-* [MongoDB](https://docs.mongodb.com/manual/installation/)
-* [PostgreSQL](https://www.postgresql.org/download/)
-* [MySQL](https://www.mysql.com/downloads/)
 
 ### **How To Run**
 **&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1. Run Code**
@@ -62,7 +58,7 @@ After project name, you will be asked to choose project type. Fullstack type wil
 ```
 **&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4. Choose Backend Framework**
 
-Choose the backend framework for your projec. 
+Choose the backend framework for your project. 
 > This step will only occur if you choose to generate fullstack or backend project.
 ```
 Configure backend
@@ -76,6 +72,7 @@ Configure backend
 Choose the database for the backend, both database using an ORM which simplifies the development(you don’t need to connect to the database manually). 
 > This step will only occur if you choose to generate fullstack or backend project.
 ```
+? Backend Framework [Express/Fastify]
 ? Database Engine (use arrow keys)
 > MongoDB (Mongoose)
   PostgreSQL (Prisma)
@@ -97,6 +94,7 @@ Configure frontend
 Choose the CSS framework for the frontend.
 > This step will only occur if you choose to generate frontend  or fullstack project.
 ```
+? Frontend framework [React/Vue]
 ? CSS/UI framework (Use arrow keys)
 > Bootstrap
   Tailwind
@@ -117,7 +115,13 @@ cd [project-name]
 ```
 Replace project-name with the project name you specified.
 
-## Runnng Example Project
+## Running Example Project
+### Prerequisite
+To run the example project, in order to work with database, you should have installed MongoDB or PostgreSQL, or MySQL depending on the database you choose. Instructions on installation can be found here: 
+* [MongoDB](https://docs.mongodb.com/manual/installation/)
+* [PostgreSQL](https://www.postgresql.org/download/)
+* [MySQL](https://www.mysql.com/downloads/)
+
 ### Configure backend
 **&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1. Change directory to backend**
 
@@ -128,9 +132,14 @@ cd backend
 
 **&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2. Configure Environtment Variable**
 
-After the dependencies are installed, you need to configure the environtment variable on each folder. In the backend there is file named `.env` which contain variable for the database url, change it with your url.
+After the dependencies are installed, you need to configure the environtment variable. In the backend folder there is file named `.env` which contain variable for the database url, change it with your url.\
+For Postgres and MySql:
 ```
 DATABASE_URL=postgresql://admin:admin@localhost:5432/kuproy
+```
+For MongoDB:
+```
+MONGO_URI=mongodb://localhost:27017/kuproy-example?authSource=admin
 ```
 **&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3. Postgres & MySQL**
 
