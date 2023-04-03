@@ -1,8 +1,10 @@
-# kuproy
+# **kuproy**
+## Language
 [![en](https://img.shields.io/badge/lang-en-red.svg)](https://github.com/luthfimaajid/create-kuproy/blob/main/README.md)
 [![id](https://img.shields.io/badge/lang-id-yellow.svg)](https://github.com/luthfimaajid/create-kuproy/blob/main/README.id.md)
-## Features
+## **Features**
 ---
+### **Tech Stack**
 There will be some options that you can choose based on your needs:
 * Backend Framework
     * Express
@@ -125,7 +127,7 @@ To run the example project, in order to work with database, you should have inst
 ### Configure backend
 **&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1. Change directory to backend**
 
-Make sure you follow the above step to change the directory to root project. Then go to the backend folder by typng:
+Make sure you follow the above step to change the directory to root project. Then go to the backend folder by typing:
 ```
 cd backend
 ```
@@ -133,7 +135,7 @@ cd backend
 **&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2. Configure Environtment Variable**
 
 After the dependencies are installed, you need to configure the environtment variable. In the backend folder there is file named `.env` which contain variable for the database url, change it with your url.\
-For Postgres and MySql:
+For PostgreSQL and MySQL:
 ```
 DATABASE_URL=postgresql://admin:admin@localhost:5432/kuproy
 ```
@@ -156,6 +158,7 @@ After the environtment is configured, run the project in dev mode by typing:
 ```
 npm run dev
 ```
+Backend run on `http://localhost:8080`
 
 ### Configure Frontend
 **&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1. Change directory to frontend**
@@ -169,6 +172,7 @@ cd frontend
 ```
 npm run dev 
 ```
+Frontend run on `http://localhost:3000`
 
 
 ## Folder Structure
