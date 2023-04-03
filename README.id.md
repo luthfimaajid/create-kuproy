@@ -3,7 +3,7 @@
 [![en](https://img.shields.io/badge/lang-en-red.svg)](https://github.com/luthfimaajid/create-kuproy/blob/main/README.md)
 [![id](https://img.shields.io/badge/lang-id-yellow.svg)](https://github.com/luthfimaajid/create-kuproy/blob/main/README-ID.md)
 
-## **Fitur**
+## Fitur
 ---
 ### **Pilihan Teknologi/Framework**
 Terdapat beberapa pilihan yang bisa Anda pilih berdasarkan kebutuhan Anda:
@@ -23,7 +23,8 @@ Terdapat beberapa pilihan yang bisa Anda pilih berdasarkan kebutuhan Anda:
 
 Anda bisa memilih untuk membuat hanya project backend atau frontend saja, atau Anda bisa membuat project fullstack jika ingin keduanya.
 ### **Contoh Project**
-Kami menyediakan project contoh yang di dalamnya sudah berisi file dan script yang bisa dijalankan. Project contoh hanya tersedia untuk project fullstack, maka dari itu project contoh terdiri dari project backend dan frontend. Tujuan kami menyediakan project contoh ini untuk membantu pemula agar bisa mempelajari web programming dasar yang terdiri dari tampilan (Frontend), API dan database (Backend), dan CRUD (Create, Read, Update, Delete) dasar.
+Kami menyediakan project contoh yang di dalamnya sudah berisi file dan script yang bisa dijalankan. Project contoh hanya tersedia untuk project fullstack, maka dari itu project contoh terdiri dari project backend dan frontend. Tujuan kami menyediakan project contoh ini untuk membantu pemula agar bisa mempelajari web programming dasar yang terdiri dari tampilan (Frontend), API dan database (Backend), dan CRUD (Create, Read, Update, Delete) dasar.\
+Anda bisa mengikuti langkah-langkah cara menjalankan contoh project pada bagian [Project Contoh](#project-contoh).
 
 ## Getting Started
 ---
