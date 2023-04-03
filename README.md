@@ -160,7 +160,7 @@ npm run dev
 ### Configure Frontend
 **&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1. Change directory to frontend**
 
-Open new terminal and go the root project directory then go to the frontend folder by typing:
+Open new terminal in the root project directory then go to the frontend folder by typing:
 ```
 cd frontend
 ```
