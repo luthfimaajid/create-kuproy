@@ -141,11 +141,9 @@ For MongoDB:
 ```
 MONGO_URI=mongodb://localhost:27017/kuproy-example?authSource=admin
 ```
-**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3. Postgres & MySQL**
+**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3. Postgres & MySQL (Skip this step if using MongoDB)**
 
-If you are using postgres and mysql since we are using prisma as an ORM, please make sure to define schema on `schema.prisma` file inside `src/models` folder.\
-You can refer to [this link](https://www.prisma.io/docs/reference/api-reference/prisma-schema-reference) for schema documentation.\
-After defining the model, run this 2 script before starting the application.
+If you are using postgres and mysql since we are using prisma as an ORM, you need to run this 2 script before starting the application.
 ```
 npm run prisma:migrate:dev
 npm run primsa:generate
