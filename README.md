@@ -20,6 +20,9 @@ There will be some options that you can choose based on your needs:
 
 You can choose to generate backend or frontend only, or you can generate both if you want a fullstack application.
 
+### **Example Project**
+We provide example project contain ready to run script. Example project can only be generated for fullstack project, thus example project consist of backend and frontend project. Our purpose is to provide a project that can help newbies to learn basic of web development such as UI (frontend), API and database (backend), and basic CRUD operation.
+
 ## Getting Started
 ---
 ### **Prerequisites**
@@ -122,6 +125,7 @@ DATABASE_URL=postgresql://admin:admin@localhost:5432/kuproy
 ```
 ### Postgres & MySQL
 If you are using postgres and mysql since we are using prisma as an ORM, please make sure to define schema on `schema.prisma` file inside `src/models` folder.\
+You can refer to [this link](https://www.prisma.io/docs/reference/api-reference/prisma-schema-reference) for schema documentation.\
 After defining the model, run this 2 script before starting the application.
 ```
 npm run prisma:migrate:dev
