@@ -130,7 +130,7 @@ Agar database bisa berjalan, Anda harus sudah menginstall MongoDB/PostgreSQL/MyS
 #### **&nbsp;&nbsp;&nbsp;A. Project Backend**
 **&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1. Konfigurasi Variabel Environment Backend**
 
-Anda perlu mengkonfigurasi variabel environment pada file `.env`. Pada file tersebut, terdapat url untuk database, sesuaikan url pada file tersebut dengan url yang Anda pakai.
+Anda perlu mengkonfigurasi variabel environment pada file `.env`. Pada file tersebut, terdapat url untuk database, sesuaikan url pada file tersebut dengan url yang Anda pakai.\
 Untuk database PostgreSQL dan MySQL:
 ```
 DATABASE_URL=postgresql://admin:admin@localhost:5432/kuproy
