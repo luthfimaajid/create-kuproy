@@ -158,7 +158,7 @@ Pastikan posisi direktori terminal sudah berada di posisi yang tepat, seperti di
 Jika project contoh Anda menggunakan database engine PostgreSQL atau MySQL, Anda harus menjalankan dua perintah ini sebelum menjalankan aplikasi.
 ```
 npm run prisma:migrate:dev
-npm run primsa:generate
+npm run prisma:generate
 ```
 Kedua perintah tersebut bermaksud untuk melakukan migrasi dan membuat abstraksi model.
 
