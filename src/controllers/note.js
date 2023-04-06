@@ -3,7 +3,7 @@ const Note = require("../models/note");
 exports.create = async(req, res) => {
 	const note = new Note({
 		title: req.body.title,
-		location: req.body.title,
+		location: req.body.location,
 		description: req.body.description
 	})
 
