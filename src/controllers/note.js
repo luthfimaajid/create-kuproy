@@ -4,7 +4,7 @@ const prisma = new prismaClient.PrismaClient()
 exports.create = async(req, res) => {
 	const note = {
 		title: req.body.title,
-		location: req.body.title,
+		location: req.body.location,
 		description: req.body.description
 	}
 
